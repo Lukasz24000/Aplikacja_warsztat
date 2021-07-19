@@ -28,15 +28,12 @@ namespace Warsztat_projekt
             InitList();
         }
 
-
-
         private void InitList()
         {
             var list = _repository.GetList();
             DateTime today = DateTime.Now;
             DateTime zlecenieDate = new DateTime();
             TimeSpan Difference = new TimeSpan();
-            //txtPilne.Items.Add(list.ToArray());
             for (int i=0; i < list.Count; i++)
             {
                 Zlecenie Item = new Zlecenie();
@@ -59,13 +56,12 @@ namespace Warsztat_projekt
 
         private void Button_Find(object sender, RoutedEventArgs e)
         {
-            //Test.Text+="/n klik Find";
-                        if (string.IsNullOrEmpty(txtKlientId.Text))
+            if (string.IsNullOrEmpty(txtKlientIdFind.Text))
+            {
                 return;
-            //string Klient = _repository.GetClient(Convert.ToInt32(txtKlientId.Text));
+            }
             var KlientList = _repository.GetClient(txtKlientIdFind.Text.ToString());
             Klient client1 = KlientList[0];
-            string Tekst =  + ' ' + + ' ' + client1.Nazwisko + ' ' + client1.Ulica + ' ' + client1.NrDomu.ToString() + ' ' + client1.KodPocztowy.ToString() + ' ' + client1.NrTelefonu.ToString();
             txtKlientIdB.Content = client1.KlientId;
             txtImie.Content = client1.Imie;
             txtNazwisko.Content = client1.Nazwisko;
@@ -73,12 +69,10 @@ namespace Warsztat_projekt
             txtNrDomu.Content = client1.NrDomu.ToString();
             txtKodPocztowy.Content = client1.KodPocztowy.ToString();
             txtNrTelefonu.Content = client1.NrTelefonu.ToString();
-            //KlientWynik.Text = Tekst;
         }
 
         private void Button_Add(object sender, RoutedEventArgs e)
         {
-            //Test.Text += "/n klik Add";
             
             if (txtDataPrzyjecia.SelectedDate == null || string.IsNullOrEmpty(txtKlientId.Text))
             {

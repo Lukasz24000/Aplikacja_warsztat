@@ -55,7 +55,6 @@ namespace Warsztat_projekt
             using (var connection = new SqlConnection(_conectionString))
             {
                 var Klyjent = connection.Query<Klient>(sql).ToList();
-                //Klient KlientZwr = Klyjent;
 
                 return Klyjent;
             }
